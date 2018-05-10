@@ -42,7 +42,7 @@ string TCPServer::receive()
 		socklen_t sosize  = sizeof(clientAddress);
 		newsockfd = accept(sockfd,(struct sockaddr*)&clientAddress,&sosize);
 		str = inet_ntoa(clientAddress.sin_addr);
-		pthread_create(&serverThread,NULL,&Task,(void *)newsockfd);
+		pthread_create(&serverThread,NULL,&Task,(void *)(intptr_t)newsockfd);
 	}
 	return str;
 }
